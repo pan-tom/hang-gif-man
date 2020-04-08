@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Keyboard from './Keyboard';
 import Letters from './Letters';
@@ -6,21 +6,22 @@ import RestartButton from './RestartButton';
 import Result from './Result';
 import wordsList from '../../data/words.json';
 
-const getRandomWordLetters = () => (
-    wordsList[
-        Math.floor(Math.random() * wordsList.length)
-    ].toUpperCase().split('')
-);
+const getRandomWordLetters = () => {
+    const randomKey = Math.floor(
+        Math.random() * wordsList.length
+    );
+    return wordsList[randomKey]
+        .toUpperCase()
+        .split('');
+};
 
 export default () => {
 
-    const [wordLetters, setWordLetters] = useState(
-        getRandomWordLetters()
-    );
+    const [wordLetters, setWordLetters] = useState([]);
     const [selectedLetters, setSelectedLetters] = useState([]);
     const [gameResult, setGameResult] = useState(null);
 
-    const reStartGame = () => {
+    const startGame = () => {
         setWordLetters(getRandomWordLetters());
         setSelectedLetters([]);
         setGameResult(null);
@@ -38,29 +39,34 @@ export default () => {
         setGameResult('succeed');
     };
 
-    // WHY renders 2 times?
-    console.log(wordLetters);
+    useEffect(() => {
+        startGame();
+    }, []);
 
     return (
         <>
             <RestartButton
-                onClick={reStartGame}
+                onClick={startGame}
             />
             <Result
                 letters={wordLetters}
                 selectedLetters={selectedLetters}
                 onFailed={onFailed}
             />
-            <Letters
-                letters={wordLetters}
-                selectedLetters={selectedLetters}
-                onSucceed={onSucceed}
-            />
-            <Keyboard
-                handleKeyClick={handleKeyClick}
-                selectedLetters={selectedLetters}
-                disabled={gameResult !== null}
-            />
+            {wordLetters.length > 0 && (
+                <>
+                    <Letters
+                        letters={wordLetters}
+                        selectedLetters={selectedLetters}
+                        onSucceed={onSucceed}
+                    />
+                    <Keyboard
+                        handleKeyClick={handleKeyClick}
+                        selectedLetters={selectedLetters}
+                        disabled={gameResult !== null}
+                    />
+                </>
+            )}
         </>
     )
 
