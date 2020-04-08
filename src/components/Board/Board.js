@@ -18,14 +18,24 @@ export default () => {
         getRandomWordLetters()
     );
     const [selectedLetters, setSelectedLetters] = useState([]);
+    const [gameResult, setGameResult] = useState(null);
 
     const reStartGame = () => {
         setWordLetters(getRandomWordLetters());
         setSelectedLetters([]);
+        setGameResult(null);
     };
 
     const handleKeyClick = letter => {
         setSelectedLetters(prevLetters => [...prevLetters, letter]);
+    };
+
+    const onFailed = () => {
+        setGameResult('failed');
+    };
+
+    const onSucceed = () => {
+        setGameResult('succeed');
     };
 
     return (
@@ -36,16 +46,17 @@ export default () => {
             <Result
                 letters={wordLetters}
                 selectedLetters={selectedLetters}
-                // onFailed={onFailed}
+                onFailed={onFailed}
             />
             <Letters
                 letters={wordLetters}
                 selectedLetters={selectedLetters}
-                // onSucceed={onSucceed}
+                onSucceed={onSucceed}
             />
             <Keyboard
                 handleKeyClick={handleKeyClick}
                 selectedLetters={selectedLetters}
+                disabled={gameResult !== null}
             />
         </>
     )

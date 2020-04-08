@@ -9,4 +9,3 @@ export default ({ onClick }) =>
     >
         RESTART GAME
     </button>
-
