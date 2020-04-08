@@ -1,0 +1,19 @@
+.container {
+    margin: 30px 0 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .letter {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 10px;
+        width: 1.25em;
+        height: 1.25em;
+        border-bottom: solid 1px #ccc;
+        font-size: 2em;
+        user-select: none;
+    }
+
+}
