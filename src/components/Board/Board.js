@@ -7,8 +7,8 @@ import Result from './Result';
 import wordsList from '../../data/words.json';
 
 const getRandomWordLetters = () => (
-    wordsList.list[
-        Math.floor(Math.random() * wordsList.count)
+    wordsList[
+        Math.floor(Math.random() * wordsList.length)
     ].toUpperCase().split('')
 );
 
@@ -37,6 +37,9 @@ export default () => {
     const onSucceed = () => {
         setGameResult('succeed');
     };
+
+    // WHY renders 2 times?
+    console.log(wordLetters);
 
     return (
         <>
