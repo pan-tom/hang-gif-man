@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import styles from './Result.module.scss';
 
-const MAX_FAILS = 4;
+const MAX_FAILS = 6;
 
 export default ({
     gameResult,
