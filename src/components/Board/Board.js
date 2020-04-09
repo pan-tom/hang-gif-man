@@ -47,8 +47,10 @@ export default () => {
         <>
             <RestartButton
                 onClick={startGame}
+                disabled={!selectedLetters.length}
             />
             <Result
+                gameResult={gameResult}
                 letters={wordLetters}
                 selectedLetters={selectedLetters}
                 onFailed={onFailed}
@@ -56,6 +58,7 @@ export default () => {
             {wordLetters.length > 0 && (
                 <>
                     <Letters
+                        gameResult={gameResult}
                         letters={wordLetters}
                         selectedLetters={selectedLetters}
                         onSucceed={onSucceed}

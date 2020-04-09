@@ -2,10 +2,12 @@ import React, { useEffect } from 'react';
 
 import styles from './Letters.module.scss';
 
-export default ({ letters, onSucceed, selectedLetters }) => {
+export default ({ gameResult, letters, onSucceed, selectedLetters }) => {
+
+    const gameFailed = gameResult === 'failed';
 
     useEffect(() => {
-        const success = letters.slice(1, -1)
+        const success = letters
             .every(letter => selectedLetters.includes(letter));
         if(success) {
             onSucceed();
@@ -15,15 +17,17 @@ export default ({ letters, onSucceed, selectedLetters }) => {
     return (
         <div className={styles.container}>
             {letters.map((letter, index) => {
-                const showLetter = selectedLetters.includes(letter)
-                    || index === 0
-                    || index === letters.length - 1;
+                const showLetter = selectedLetters.includes(letter);
+                let letterClasses = [styles.letter];
+                if(gameFailed && !showLetter) {
+                    letterClasses.push(styles['letter-failed']);
+                }
                 return (
                     <div
                         key={index}
-                        className={styles.letter}
+                        className={letterClasses.join(' ')}
                     >
-                        {showLetter && letter}
+                        {(showLetter || gameFailed) && letter}
                     </div>
                 )
             })}

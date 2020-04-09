@@ -12,4 +12,14 @@
         background-color: #888;
         border-color: #888;
     }
+    &[disabled] {
+        cursor: default;
+        color: #ddd;
+        box-shadow: none;
+        &:hover {
+            color: #ddd;
+            background-color: transparent;
+            border-color: #ddd;
+        }
+    }
 }
