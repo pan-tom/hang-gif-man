@@ -31,7 +31,7 @@ export default ({
                 src={imageSrc}
                 alt={gameResult === 'succeed' ? 'Success' : `Fails: ${numFails}`}
             />}
-            {numFails > 0 && <div>FAILS: {numFails}/{MAX_FAILS}</div>}
+            <div>FAILS: {numFails}/{MAX_FAILS}</div>
         </div>
     )
 };
