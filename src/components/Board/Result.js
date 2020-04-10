@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 
+import ResultImage from './ResultImage';
 import styles from './Result.module.scss';
 
 const MAX_FAILS = 6;
@@ -14,11 +15,7 @@ export default ({
     const failedLetters = selectedLetters
         .filter(letter => !letters.includes(letter));
     const numFails = failedLetters.length;
-
-    const imageSrc = gameResult === 'succeed'
-        ? '/media/success.webp'
-        : `/media/fail${numFails}.webp`;
-
+    
     useEffect(() => {
         if(numFails === MAX_FAILS) {
             onFailed();
@@ -27,10 +24,10 @@ export default ({
     
     return (
         <div className={styles.container}>
-            {imageSrc !== null && <img
-                src={imageSrc}
-                alt={gameResult === 'succeed' ? 'Success' : `Fails: ${numFails}`}
-            />}
+            <ResultImage
+                gameResult={gameResult}
+                numFails={numFails}
+            />
             <div>FAILS: {numFails}/{MAX_FAILS}</div>
         </div>
     )
