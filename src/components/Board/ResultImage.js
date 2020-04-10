@@ -5,6 +5,7 @@ const loadingSrc = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjBweCIgIGhlaWdodD
 export default ({ gameResult, numFails }) => {
 
     const ref = useRef();
+    const [isLoaded, setIsLoaded] = useState(false);
 
     const src = gameResult === 'succeed'
         ? '/media/success'
@@ -12,9 +13,7 @@ export default ({ gameResult, numFails }) => {
     const alt = gameResult === 'succeed'
         ? 'Success'
         : `Fails: ${numFails}`;
-
-    const [isLoaded, setIsLoaded] = useState(false);
-
+    
     useEffect(() => {
         const img = ref.current;
         if(img) {
