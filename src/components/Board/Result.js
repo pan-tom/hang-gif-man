@@ -18,9 +18,11 @@ export default ({
     
     useEffect(() => {
         if(numFails === MAX_FAILS) {
+            navigator.vibrate(300);
             onFailed();
+        } else {
+            navigator.vibrate(100,100);
         }
-        navigator.vibrate(1000);
     }, [numFails, onFailed]);
     
     return (
