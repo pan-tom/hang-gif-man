@@ -20,6 +20,7 @@ export default ({
         if(numFails === MAX_FAILS) {
             onFailed();
         }
+        navigator.vibrate(1000);
     }, [numFails, onFailed]);
     
     return (
