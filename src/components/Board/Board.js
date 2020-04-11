@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import Keyboard from './Keyboard';
 import Letters from './Letters';
@@ -31,13 +31,13 @@ export default () => {
         setSelectedLetters(prevLetters => [...prevLetters, letter]);
     };
 
-    const onFailed = () => {
+    const onFailed = useCallback(() => {
         setGameResult('failed');
-    };
+    }, []);
 
-    const onSucceed = () => {
+    const onSucceed = useCallback(() => {
         setGameResult('succeed');
-    };
+    }, []);
 
     useEffect(() => {
         startGame();
