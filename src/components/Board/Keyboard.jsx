@@ -11,17 +11,33 @@ const Keyboard = ({ disabled, handleKeyClick, selectedLetters }) => {
     return keys
   }, [])
 
+  const handleKeyDown = (e, letter) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault()
+      if (!disabled && !selectedLetters.includes(letter)) {
+        handleKeyClick(letter)
+      }
+    }
+  }
+
   return (
-    <div className={styles.container}>
-      {getKeys.map(letter => (
-        <button
-          key={letter}
-          onClick={() => handleKeyClick(letter)}
-          disabled={disabled || selectedLetters.includes(letter)}
-        >
-          {letter}
-        </button>
-      ))}
+    <div className={styles.container} role="group" aria-label="Letter keyboard">
+      {getKeys.map(letter => {
+        const isSelected = selectedLetters.includes(letter)
+        return (
+          <button
+            key={letter}
+            onClick={() => handleKeyClick(letter)}
+            onKeyDown={e => handleKeyDown(e, letter)}
+            disabled={disabled || isSelected}
+            aria-label={`Select letter ${letter}`}
+            aria-pressed={isSelected}
+            aria-disabled={disabled || isSelected}
+          >
+            {letter}
+          </button>
+        )
+      })}
     </div>
   )
 }

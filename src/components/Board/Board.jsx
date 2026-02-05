@@ -38,6 +38,13 @@ const Board = () => {
     startGame()
   }, [])
 
+  const gameStatusMessage =
+    gameResult === 'succeed'
+      ? 'Congratulations! You won the game!'
+      : gameResult === 'failed'
+        ? 'Game over! You ran out of guesses.'
+        : ''
+
   return (
     <>
       <RestartButton onClick={startGame} disabled={!selectedLetters.length} />
@@ -47,6 +54,11 @@ const Board = () => {
         selectedLetters={selectedLetters}
         onFailed={onFailed}
       />
+      {gameStatusMessage && (
+        <div role="status" aria-live="polite" className="sr-only">
+          {gameStatusMessage}
+        </div>
+      )}
       {wordLetters.length > 0 && (
         <>
           <Letters

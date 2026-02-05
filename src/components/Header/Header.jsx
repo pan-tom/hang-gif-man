@@ -4,9 +4,9 @@ import styles from './Header.module.scss'
 
 const Header = () => {
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       <h1>Hang GIF man</h1>
-    </div>
+    </header>
   )
 }
 
