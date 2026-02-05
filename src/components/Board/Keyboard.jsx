@@ -2,7 +2,7 @@ import React, { useMemo } from 'react'
 
 import styles from './Keyboard.module.scss'
 
-export default ({ disabled, handleKeyClick, selectedLetters }) => {
+const Keyboard = ({ disabled, handleKeyClick, selectedLetters }) => {
   const getKeys = useMemo(() => {
     let keys = []
     for (let code = 65; code <= 90; code++) {
@@ -25,3 +25,5 @@ export default ({ disabled, handleKeyClick, selectedLetters }) => {
     </div>
   )
 }
+
+export default Keyboard

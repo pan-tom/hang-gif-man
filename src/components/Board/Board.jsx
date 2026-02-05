@@ -11,7 +11,7 @@ const getRandomWordLetters = () => {
   return wordsList[randomKey].toUpperCase().split('')
 }
 
-export default () => {
+const Board = () => {
   const [wordLetters, setWordLetters] = useState([])
   const [selectedLetters, setSelectedLetters] = useState([])
   const [gameResult, setGameResult] = useState(null)
@@ -65,3 +65,5 @@ export default () => {
     </>
   )
 }
+
+export default Board
