@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-
+import { GAME_RESULT, MESSAGES } from '../../constants'
 import Keyboard from './Keyboard'
 import Letters from './Letters'
 import RestartButton from './RestartButton'
@@ -27,11 +27,11 @@ const Board = () => {
   }
 
   const onFailed = useCallback(() => {
-    setGameResult('failed')
+    setGameResult(GAME_RESULT.FAILED)
   }, [])
 
   const onSucceed = useCallback(() => {
-    setGameResult('succeed')
+    setGameResult(GAME_RESULT.SUCCEED)
   }, [])
 
   useEffect(() => {
@@ -39,10 +39,10 @@ const Board = () => {
   }, [])
 
   const gameStatusMessage =
-    gameResult === 'succeed'
-      ? 'Congratulations! You won the game!'
-      : gameResult === 'failed'
-        ? 'Game over! You ran out of guesses.'
+    gameResult === GAME_RESULT.SUCCEED
+      ? MESSAGES.GAME_WON
+      : gameResult === GAME_RESULT.FAILED
+        ? MESSAGES.GAME_OVER
         : ''
 
   return (

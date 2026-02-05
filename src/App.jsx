@@ -1,5 +1,4 @@
 import React from 'react'
-
 import Board from './components/Board/Board'
 import Header from './components/Header/Header'
 import Layout from './components/Layout/Layout'

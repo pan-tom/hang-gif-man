@@ -1,18 +1,22 @@
 import React, { useMemo } from 'react'
-
+import { KEYBOARD, ACTIVATION_KEYS } from '../../constants'
 import styles from './Keyboard.module.scss'
 
 const Keyboard = ({ disabled, handleKeyClick, selectedLetters }) => {
   const getKeys = useMemo(() => {
     let keys = []
-    for (let code = 65; code <= 90; code++) {
+    for (
+      let code = KEYBOARD.FIRST_LETTER_CODE;
+      code <= KEYBOARD.LAST_LETTER_CODE;
+      code++
+    ) {
       keys.push(String.fromCharCode(code))
     }
     return keys
   }, [])
 
   const handleKeyDown = (e, letter) => {
-    if (e.key === 'Enter' || e.key === ' ') {
+    if (ACTIVATION_KEYS.includes(e.key)) {
       e.preventDefault()
       if (!disabled && !selectedLetters.includes(letter)) {
         handleKeyClick(letter)
