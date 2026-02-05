@@ -11,7 +11,7 @@ const vibration = duration => {
   }
 }
 
-export default ({ gameResult, letters, onFailed, selectedLetters }) => {
+const Result = ({ gameResult, letters, onFailed, selectedLetters }) => {
   const failedLetters = selectedLetters.filter(
     letter => !letters.includes(letter)
   )
@@ -37,3 +37,5 @@ export default ({ gameResult, letters, onFailed, selectedLetters }) => {
     </div>
   )
 }
+
+export default Result

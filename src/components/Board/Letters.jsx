@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 
 import styles from './Letters.module.scss'
 
-export default ({ gameResult, letters, onSucceed, selectedLetters }) => {
+const Letters = ({ gameResult, letters, onSucceed, selectedLetters }) => {
   const gameFailed = gameResult === 'failed'
 
   useEffect(() => {
@@ -29,3 +29,5 @@ export default ({ gameResult, letters, onSucceed, selectedLetters }) => {
     </div>
   )
 }
+
+export default Letters

@@ -1,5 +1,91 @@
-This project was bootstrapped with Create React App.
+# Hang GIF Man
 
-It is a simple "hang man" game created in ReactJS just for learning purposes.
+A modern React-based Hangman game with animated GIFs that show your progress. Built with React 19 and Vite for a fast, smooth experience.
 
-Online demo: [https://hang-gif-man.test-app.ga](https://hang-gif-man.test-app.ga)
+## 🎮 Features
+
+- Classic Hangman gameplay
+- Animated GIF feedback for wrong guesses
+- Success animation when you win
+- Responsive design
+- Keyboard input support
+- Vibration feedback (on supported devices)
+
+## 🛠️ Tech Stack
+
+- **React 19.2.4** - Latest React with modern features
+- **Vite 7** - Fast build tool and dev server
+- **Vitest 4** - Modern testing framework
+- **SCSS Modules** - Scoped styling
+- **React Testing Library** - Component testing
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 20+ 
+- npm
+
+### Installation
+
+```bash
+# Install dependencies
+npm install
+```
+
+### Development
+
+```bash
+# Start development server
+npm run dev
+```
+
+The app will be available at `http://localhost:5173`
+
+### Building for Production
+
+```bash
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+### Testing
+
+```bash
+# Run tests
+npm test
+
+# Run tests with UI
+npm run test:ui
+```
+
+### Code Formatting
+
+```bash
+# Format code with Prettier
+npm run format
+```
+
+## 📁 Project Structure
+
+```
+src/
+├── components/
+│   ├── Board/          # Game board and logic
+│   ├── Header/         # App header
+│   └── Layout/         # Main layout wrapper
+├── data/
+│   └── words.json     # Word list
+└── index.jsx          # App entry point
+```
+
+## 🌐 Demo
+
+Live demo: [https://hang-gif-man.test-app.ga](https://hang-gif-man.test-app.ga)
+
+## 📝 License
+
+This project was created for learning purposes.
