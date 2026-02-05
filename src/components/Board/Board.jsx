@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-
+import { GAME_RESULT, MESSAGES } from '../../constants'
 import Keyboard from './Keyboard'
 import Letters from './Letters'
 import RestartButton from './RestartButton'
@@ -27,16 +27,23 @@ const Board = () => {
   }
 
   const onFailed = useCallback(() => {
-    setGameResult('failed')
+    setGameResult(GAME_RESULT.FAILED)
   }, [])
 
   const onSucceed = useCallback(() => {
-    setGameResult('succeed')
+    setGameResult(GAME_RESULT.SUCCEED)
   }, [])
 
   useEffect(() => {
     startGame()
   }, [])
+
+  const gameStatusMessage =
+    gameResult === GAME_RESULT.SUCCEED
+      ? MESSAGES.GAME_WON
+      : gameResult === GAME_RESULT.FAILED
+        ? MESSAGES.GAME_OVER
+        : ''
 
   return (
     <>
@@ -47,6 +54,11 @@ const Board = () => {
         selectedLetters={selectedLetters}
         onFailed={onFailed}
       />
+      {gameStatusMessage && (
+        <div role="status" aria-live="polite" className="sr-only">
+          {gameStatusMessage}
+        </div>
+      )}
       {wordLetters.length > 0 && (
         <>
           <Letters

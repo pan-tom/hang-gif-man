@@ -1,9 +1,7 @@
 import React, { useEffect } from 'react'
-
+import { MAX_WRONG_GUESSES, VIBRATION } from '../../constants'
 import ResultImage from './ResultImage'
 import styles from './Result.module.scss'
-
-const MAX_FAILS = 6
 
 const vibration = duration => {
   if (navigator.vibrate) {
@@ -12,27 +10,27 @@ const vibration = duration => {
 }
 
 const Result = ({ gameResult, letters, onFailed, selectedLetters }) => {
-  const failedLetters = selectedLetters.filter(
+  const wrongLetters = selectedLetters.filter(
     letter => !letters.includes(letter)
   )
-  const numFails = failedLetters.length
+  const numWrong = wrongLetters.length
 
   useEffect(() => {
-    if (numFails === MAX_FAILS) {
-      vibration(300)
+    if (numWrong === MAX_WRONG_GUESSES) {
+      vibration(VIBRATION.GAME_LOST)
       onFailed()
     } else {
-      if (numFails > 0) {
-        vibration(100, 100)
+      if (numWrong > 0) {
+        vibration(...VIBRATION.WRONG_GUESS)
       }
     }
-  }, [numFails, onFailed])
+  }, [numWrong, onFailed])
 
   return (
-    <div className={styles.container}>
-      <ResultImage gameResult={gameResult} numFails={numFails} />
-      <div>
-        FAILS: {numFails}/{MAX_FAILS}
+    <div className={styles.container} role="status" aria-live="polite">
+      <ResultImage gameResult={gameResult} numWrong={numWrong} />
+      <div aria-label={`Number of wrong guesses: ${numWrong} out of ${MAX_WRONG_GUESSES}`}>
+        WRONG: {numWrong}/{MAX_WRONG_GUESSES}
       </div>
     </div>
   )

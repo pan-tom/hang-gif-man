@@ -8,8 +8,9 @@ A modern React-based Hangman game with animated GIFs that show your progress. Bu
 - Animated GIF feedback for wrong guesses
 - Success animation when you win
 - Responsive design
-- Keyboard input support
+- Keyboard input support (mouse and keyboard)
 - Vibration feedback (on supported devices)
+- Full accessibility support (ARIA labels, keyboard navigation, screen reader friendly)
 
 ## 🛠️ Tech Stack
 
@@ -40,7 +41,7 @@ npm install
 npm run dev
 ```
 
-The app will be available at `http://localhost:3000`
+The app will be available at `http://localhost:5173` (or next available port)
 
 ### Building for Production
 
@@ -79,7 +80,9 @@ src/
 │   └── Layout/         # Main layout wrapper
 ├── data/
 │   └── words.json     # Word list
-└── index.jsx          # App entry point
+├── constants.js       # Game constants and configuration
+├── index.jsx          # App entry point
+└── vitest.setup.js    # Test setup and mocks
 ```
 
 ## 🌐 Demo
