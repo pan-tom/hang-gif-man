@@ -1,25 +1,25 @@
 .btn {
-    display: block;
-    margin: 15px auto 0 auto;
-    color: #888;
-    background: none;
-    border: solid 1px #ddd;
-    padding: 5px 10px;
-    font-size: 14px;
-    cursor: pointer;
+  display: block;
+  margin: 15px auto 0 auto;
+  color: #888;
+  background: none;
+  border: solid 1px #ddd;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  &:hover {
+    color: #fff;
+    background-color: #888;
+    border-color: #888;
+  }
+  &[disabled] {
+    cursor: default;
+    color: #ddd;
+    box-shadow: none;
     &:hover {
-        color: #fff;
-        background-color: #888;
-        border-color: #888;
+      color: #ddd;
+      background-color: transparent;
+      border-color: #ddd;
     }
-    &[disabled] {
-        cursor: default;
-        color: #ddd;
-        box-shadow: none;
-        &:hover {
-            color: #ddd;
-            background-color: transparent;
-            border-color: #ddd;
-        }
-    }
+  }
 }

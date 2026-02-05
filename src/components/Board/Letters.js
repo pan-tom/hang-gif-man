@@ -1,36 +1,31 @@
-import React, { useEffect } from 'react';
+import React, { useEffect } from 'react'
 
-import styles from './Letters.module.scss';
+import styles from './Letters.module.scss'
 
 export default ({ gameResult, letters, onSucceed, selectedLetters }) => {
+  const gameFailed = gameResult === 'failed'
 
-    const gameFailed = gameResult === 'failed';
+  useEffect(() => {
+    const success = letters.every(letter => selectedLetters.includes(letter))
+    if (success) {
+      onSucceed()
+    }
+  }, [letters, onSucceed, selectedLetters])
 
-    useEffect(() => {
-        const success = letters
-            .every(letter => selectedLetters.includes(letter));
-        if(success) {
-            onSucceed();
+  return (
+    <div className={styles.container}>
+      {letters.map((letter, index) => {
+        const showLetter = selectedLetters.includes(letter)
+        let letterClasses = [styles.letter]
+        if (gameFailed && !showLetter) {
+          letterClasses.push(styles['letter-failed'])
         }
-    }, [letters, onSucceed, selectedLetters]);
-
-    return (
-        <div className={styles.container}>
-            {letters.map((letter, index) => {
-                const showLetter = selectedLetters.includes(letter);
-                let letterClasses = [styles.letter];
-                if(gameFailed && !showLetter) {
-                    letterClasses.push(styles['letter-failed']);
-                }
-                return (
-                    <div
-                        key={index}
-                        className={letterClasses.join(' ')}
-                    >
-                        {(showLetter || gameFailed) && letter}
-                    </div>
-                )
-            })}
-        </div>
-    )
-};
+        return (
+          <div key={index} className={letterClasses.join(' ')}>
+            {(showLetter || gameFailed) && letter}
+          </div>
+        )
+      })}
+    </div>
+  )
+}
