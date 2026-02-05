@@ -5,6 +5,12 @@ import styles from './Result.module.scss'
 
 const MAX_FAILS = 6
 
+const vibration = duration => {
+  if (navigator.vibrate) {
+    navigator.vibrate(duration)
+  }
+}
+
 export default ({ gameResult, letters, onFailed, selectedLetters }) => {
   const failedLetters = selectedLetters.filter(
     letter => !letters.includes(letter)
@@ -13,13 +19,11 @@ export default ({ gameResult, letters, onFailed, selectedLetters }) => {
 
   useEffect(() => {
     if (numFails === MAX_FAILS) {
-      navigator.vibrate(300)
-      // console.log('vibration 300');
+      vibration(300)
       onFailed()
     } else {
       if (numFails > 0) {
-        navigator.vibrate(100, 100)
-        // console.log('vibration 100,100');
+        vibration(100, 100)
       }
     }
   }, [numFails, onFailed])
