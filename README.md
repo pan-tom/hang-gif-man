@@ -23,7 +23,7 @@ A modern React-based Hangman game with animated GIFs that show your progress. Bu
 
 ### Prerequisites
 
-- Node.js 20+ 
+- Node.js 20+
 - npm
 
 ### Installation
@@ -40,7 +40,7 @@ npm install
 npm run dev
 ```
 
-The app will be available at `http://localhost:5173`
+The app will be available at `http://localhost:3000`
 
 ### Building for Production
 
@@ -84,7 +84,7 @@ src/
 
 ## 🌐 Demo
 
-Live demo: [https://hang-gif-man.test-app.ga](https://hang-gif-man.test-app.ga)
+Live demo: [https://hangman-gif.netlify.app/](https://hangman-gif.netlify.app/)
 
 ## 📝 License
 
