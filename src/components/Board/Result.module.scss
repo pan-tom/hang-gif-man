@@ -1,13 +1,15 @@
+@use '../../styles/variables' as *;
+
 .container {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 200px;
-  height: 200px;
-  margin: 30px auto 0 auto;
-  border: solid 1px #ddd;
+  width: $width-result-container;
+  height: $height-result-container;
+  margin: $spacing-lg auto 0 auto;
+  border: $border-style-default $border-width-default $color-border-default;
 
   img {
     display: block;
@@ -18,10 +20,10 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    padding: 5px 0;
-    background: rgba(#eee, 0.75);
-    font-size: 16px;
+    padding: $spacing-xs 0;
+    background: $color-bg-overlay;
+    font-size: $font-size-base;
     text-align: center;
-    color: #333;
+    color: $color-text-primary;
   }
 }

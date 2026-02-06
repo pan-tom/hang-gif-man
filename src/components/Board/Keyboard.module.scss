@@ -1,6 +1,8 @@
+@use '../../styles/variables' as *;
+
 .container {
-  margin: 30px auto 0 auto;
-  width: 320px;
+  margin: $spacing-lg auto 0 auto;
+  width: $width-keyboard;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -9,18 +11,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 5px;
-    width: 2em;
-    height: 2em;
+    margin: $spacing-xs;
+    width: $size-button;
+    height: $size-button;
     background: none;
-    border: solid 1px #ddd;
-    box-shadow: 2px 2px 1px 0px rgba(#eee, 0.75);
+    border: $border-style-default $border-width-default $color-border-default;
+    box-shadow: $shadow-button;
     font-size: 1em;
-    color: #333;
+    color: $color-text-primary;
     cursor: pointer;
     &[disabled] {
       cursor: default;
-      color: #ddd;
+      color: $color-text-disabled;
       box-shadow: none;
     }
   }
