@@ -29,7 +29,9 @@ const Result = ({ gameResult, letters, onFailed, selectedLetters }) => {
   return (
     <div className={styles.container} role="status" aria-live="polite">
       <ResultImage gameResult={gameResult} numWrong={numWrong} />
-      <div aria-label={`Number of wrong guesses: ${numWrong} out of ${MAX_WRONG_GUESSES}`}>
+      <div
+        aria-label={`Number of wrong guesses: ${numWrong} out of ${MAX_WRONG_GUESSES}`}
+      >
         WRONG: {numWrong}/{MAX_WRONG_GUESSES}
       </div>
     </div>

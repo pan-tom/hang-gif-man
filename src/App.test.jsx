@@ -1,11 +1,19 @@
 import { describe, it, expect } from 'vitest'
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import App from './App'
 
 describe('App', () => {
   it('renders header and board', () => {
-    const { getByText } = render(<App />)
-    const headerElement = getByText(/hang gif man/i)
-    expect(headerElement).toBeInTheDocument()
+    render(<App />)
+
+    expect(
+      screen.getByRole('heading', { name: /hang gif man/i })
+    ).toBeInTheDocument()
+    expect(
+      screen.getByRole('button', { name: /restart game/i })
+    ).toBeInTheDocument()
+    expect(
+      screen.getByRole('group', { name: /letter keyboard/i })
+    ).toBeInTheDocument()
   })
 })

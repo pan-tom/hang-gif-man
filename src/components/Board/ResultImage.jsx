@@ -1,5 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { GAME_RESULT, LOADING_IMAGE_SRC, MAX_WRONG_GUESSES, MEDIA_PATHS, MESSAGES } from '../../constants'
+import {
+  GAME_RESULT,
+  LOADING_IMAGE_SRC,
+  MAX_WRONG_GUESSES,
+  MEDIA_PATHS,
+  MESSAGES,
+} from '../../constants'
 
 const ResultImage = ({ gameResult, numWrong }) => {
   const ref = useRef()
@@ -36,7 +42,11 @@ const ResultImage = ({ gameResult, numWrong }) => {
             <source type="image/gif" srcSet={`${src}.gif`} />
           </>
         )}
-        <img ref={ref} alt={alt} src={isLoaded ? `${src}.gif` : LOADING_IMAGE_SRC} />
+        <img
+          ref={ref}
+          alt={alt}
+          src={isLoaded ? `${src}.gif` : LOADING_IMAGE_SRC}
+        />
       </picture>
     </>
   )
