@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { GAME_RESULT } from '../../constants'
 import styles from './Letters.module.scss'
 

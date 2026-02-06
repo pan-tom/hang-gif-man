@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { KEYBOARD, ACTIVATION_KEYS } from '../../constants'
 import styles from './Keyboard.module.scss'
 

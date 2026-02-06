@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { GAME_RESULT, MESSAGES } from '../../constants'
 import Keyboard from './Keyboard'
 import Letters from './Letters'
@@ -12,11 +12,11 @@ const getRandomWordLetters = () => {
 }
 
 const Board = () => {
-  const [wordLetters, setWordLetters] = useState([])
+  const [wordLetters, setWordLetters] = useState(() => getRandomWordLetters())
   const [selectedLetters, setSelectedLetters] = useState([])
   const [gameResult, setGameResult] = useState(null)
 
-  const startGame = () => {
+  const restartGame = () => {
     setWordLetters(getRandomWordLetters())
     setSelectedLetters([])
     setGameResult(null)
@@ -34,10 +34,6 @@ const Board = () => {
     setGameResult(GAME_RESULT.SUCCEED)
   }, [])
 
-  useEffect(() => {
-    startGame()
-  }, [])
-
   const gameStatusMessage =
     gameResult === GAME_RESULT.SUCCEED
       ? MESSAGES.GAME_WON
@@ -47,7 +43,7 @@ const Board = () => {
 
   return (
     <>
-      <RestartButton onClick={startGame} disabled={!selectedLetters.length} />
+      <RestartButton onClick={restartGame} disabled={!selectedLetters.length} />
       <Result
         gameResult={gameResult}
         letters={wordLetters}

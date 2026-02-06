@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   GAME_RESULT,
   LOADING_IMAGE_SRC,

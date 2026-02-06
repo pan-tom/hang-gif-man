@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { MAX_WRONG_GUESSES, VIBRATION } from '../../constants'
 import ResultImage from './ResultImage'
 import styles from './Result.module.scss'

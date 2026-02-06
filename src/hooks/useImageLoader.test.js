@@ -7,7 +7,7 @@ describe('useImageLoader', () => {
 
   beforeEach(() => {
     mockImageInstances = []
-    global.Image = vi.fn(function () {
+    window.Image = vi.fn(function () {
       const img = {
         onload: null,
         onerror: null,
@@ -45,12 +45,9 @@ describe('useImageLoader', () => {
   })
 
   it('resets to false when src changes', async () => {
-    const { result, rerender } = renderHook(
-      ({ src }) => useImageLoader(src),
-      {
-        initialProps: { src: '/image1.gif' },
-      }
-    )
+    const { result, rerender } = renderHook(({ src }) => useImageLoader(src), {
+      initialProps: { src: '/image1.gif' },
+    })
 
     expect(mockImageInstances.length).toBe(1)
     const img1 = mockImageInstances[0]
@@ -87,12 +84,9 @@ describe('useImageLoader', () => {
   })
 
   it('creates new Image instance when src changes', () => {
-    const { rerender } = renderHook(
-      ({ src }) => useImageLoader(src),
-      {
-        initialProps: { src: '/image1.gif' },
-      }
-    )
+    const { rerender } = renderHook(({ src }) => useImageLoader(src), {
+      initialProps: { src: '/image1.gif' },
+    })
 
     expect(mockImageInstances.length).toBe(1)
 
