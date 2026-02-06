@@ -142,9 +142,12 @@ describe('Board', () => {
       }
     }
 
-    const buttons = within(keyboard).getAllByRole('button')
-    buttons.forEach(button => {
-      expect(button).toBeDisabled()
+    // Wait for game state to update and buttons to become disabled
+    await waitFor(() => {
+      const buttons = within(keyboard).getAllByRole('button')
+      buttons.forEach(button => {
+        expect(button).toBeDisabled()
+      })
     })
   })
 })
