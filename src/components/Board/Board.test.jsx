@@ -76,23 +76,48 @@ describe('Board', () => {
     render(<Board />)
 
     const keyboard = screen.getByRole('group', { name: /letter keyboard/i })
+    const result = screen.getByRole('status')
 
-    // Select wrong letters until game ends
-    const wrongLetters = ['X', 'Z', 'Q', 'J', 'K', 'W']
-    for (const letter of wrongLetters) {
+    // Select wrong letters until we reach 6 wrong guesses
+    // Use letters that are unlikely to be in common words
+    const candidateLetters = ['X', 'Z', 'Q', 'J', 'K', 'W', 'V', 'B', 'N', 'M']
+    let wrongCountReached = false
+
+    for (const letter of candidateLetters) {
+      if (wrongCountReached) break
+
       const button = within(keyboard).getByRole('button', {
         name: new RegExp(`select letter ${letter}`, 'i'),
       })
       if (!button.disabled) {
         await user.click(button)
+        // Wait for wrong count to update and check if we've reached 6
+        await waitFor(() => {
+          const wrongCount = within(result).getByLabelText(
+            /number of wrong guesses/i
+          )
+          const match = wrongCount.textContent.match(/WRONG: (\d+)\/\d+/)
+          expect(match).not.toBeNull()
+          const currentWrong = parseInt(match[1], 10)
+          if (currentWrong >= 6) {
+            wrongCountReached = true
+          }
+        })
       }
     }
 
-    // Check for game over message
-    await waitFor(() => {
-      const gameOverMessage = screen.getByText(/game over/i, { hidden: true })
-      expect(gameOverMessage).toBeInTheDocument()
-    })
+    // Wait for game to end (wrong count reaches 6 and message appears)
+    await waitFor(
+      () => {
+        const wrongCount = within(result).getByLabelText(
+          /number of wrong guesses/i
+        )
+        expect(wrongCount).toHaveTextContent(/WRONG: 6\/6/)
+        const gameOverMessage = screen.getByText(/game over/i, { hidden: true })
+        expect(gameOverMessage).toBeInTheDocument()
+      },
+      { timeout: 3000 }
+    )
   })
 
   it('activates keyboard buttons with Enter key', async () => {
