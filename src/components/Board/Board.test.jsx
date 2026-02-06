@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { render, screen, within } from '@testing-library/react'
+import { render, screen, within, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Board from './Board'
 
@@ -89,8 +89,10 @@ describe('Board', () => {
     }
 
     // Check for game over message
-    const gameOverMessage = screen.getByText(/game over/i, { hidden: true })
-    expect(gameOverMessage).toBeInTheDocument()
+    await waitFor(() => {
+      const gameOverMessage = screen.getByText(/game over/i, { hidden: true })
+      expect(gameOverMessage).toBeInTheDocument()
+    })
   })
 
   it('activates keyboard buttons with Enter key', async () => {
