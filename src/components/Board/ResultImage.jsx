@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import {
   GAME_RESULT,
   LOADING_IMAGE_SRC,
@@ -6,10 +6,9 @@ import {
   MEDIA_PATHS,
   MESSAGES,
 } from '../../constants'
+import useImageLoader from '../../hooks/useImageLoader'
 
 const ResultImage = ({ gameResult, numWrong }) => {
-  const [isLoaded, setIsLoaded] = useState(false)
-
   const src =
     gameResult === GAME_RESULT.SUCCEED
       ? MEDIA_PATHS.SUCCESS
@@ -19,12 +18,7 @@ const ResultImage = ({ gameResult, numWrong }) => {
       ? MESSAGES.SUCCESS_ANIMATION_ALT
       : MESSAGES.HANGMAN_PROGRESS_ALT(numWrong, MAX_WRONG_GUESSES)
 
-  useEffect(() => {
-    setIsLoaded(false)
-    const img = new Image()
-    img.onload = () => setIsLoaded(true)
-    img.src = `${src}.gif`
-  }, [src])
+  const isLoaded = useImageLoader(`${src}.gif`)
 
   return (
     <picture>
