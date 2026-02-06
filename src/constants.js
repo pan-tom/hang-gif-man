@@ -10,7 +10,7 @@ export const VIBRATION = {
   WRONG_GUESS: [100, 100],
 }
 
-export const KEYBOARD = {
+const KEYBOARD = {
   FIRST_LETTER_CODE: 65, // 'A'
   LAST_LETTER_CODE: 90, // 'Z'
   ENTER: 'Enter',
@@ -18,6 +18,14 @@ export const KEYBOARD = {
 }
 
 export const ACTIVATION_KEYS = [KEYBOARD.ENTER, KEYBOARD.SPACE]
+
+export const LETTER_KEYS = (() => {
+  const keys = []
+  for (let code = KEYBOARD.FIRST_LETTER_CODE; code <= KEYBOARD.LAST_LETTER_CODE; code++) {
+    keys.push(String.fromCharCode(code))
+  }
+  return keys
+})()
 
 export const MEDIA_PATHS = {
   SUCCESS: '/media/success',

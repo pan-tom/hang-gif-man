@@ -1,0 +1,44 @@
+// Colors
+$color-text-primary: #333;
+$color-text-secondary: #888;
+$color-text-disabled: #ddd;
+$color-text-muted: #ccc;
+
+$color-border-default: #ddd;
+$color-border-muted: #ccc;
+
+$color-bg-hover: #888;
+$color-bg-overlay: rgba(#eee, 0.75);
+$color-bg-transparent: transparent;
+
+$color-white: #fff;
+
+// Spacing
+$spacing-xs: 5px;
+$spacing-sm: 10px;
+$spacing-md: 15px;
+$spacing-lg: 30px;
+
+// Border
+$border-width-default: 1px;
+$border-style-default: solid;
+
+// Font sizes
+$font-size-xs: 12px;
+$font-size-sm: 14px;
+$font-size-base: 16px;
+$font-size-lg: 2em;
+
+// Dimensions
+$size-button: 2em;
+$size-letter: 1.25em;
+$width-keyboard: 320px;
+$width-result-container: 200px;
+$height-result-container: 200px;
+$max-width-container: 1200px;
+
+// Shadows
+$shadow-button: 2px 2px 1px 0px rgba(#eee, 0.75);
+
+// Transitions
+$transition-default: 0.2s ease;

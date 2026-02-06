@@ -1,10 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react'
-import { GAME_RESULT, LOADING_IMAGE_SRC, MAX_WRONG_GUESSES, MEDIA_PATHS, MESSAGES } from '../../constants'
+import {
+  GAME_RESULT,
+  LOADING_IMAGE_SRC,
+  MAX_WRONG_GUESSES,
+  MEDIA_PATHS,
+  MESSAGES,
+} from '../../constants'
+import useImageLoader from '../../hooks/useImageLoader'
 
 const ResultImage = ({ gameResult, numWrong }) => {
-  const ref = useRef()
-  const [isLoaded, setIsLoaded] = useState(false)
-
   const src =
     gameResult === GAME_RESULT.SUCCEED
       ? MEDIA_PATHS.SUCCESS
@@ -14,31 +17,18 @@ const ResultImage = ({ gameResult, numWrong }) => {
       ? MESSAGES.SUCCESS_ANIMATION_ALT
       : MESSAGES.HANGMAN_PROGRESS_ALT(numWrong, MAX_WRONG_GUESSES)
 
-  useEffect(() => {
-    const img = ref.current
-    if (img) {
-      setIsLoaded(false)
-      new IntersectionObserver((entries, observer) => {
-        if (entries[0].intersectionRatio) {
-          observer.unobserve(img)
-          setIsLoaded(true)
-        }
-      }).observe(img)
-    }
-  }, [src])
+  const isLoaded = useImageLoader(`${src}.gif`)
 
   return (
-    <>
-      <picture>
-        {isLoaded && (
-          <>
-            <source type="image/webp" srcSet={`${src}.webp`} />
-            <source type="image/gif" srcSet={`${src}.gif`} />
-          </>
-        )}
-        <img ref={ref} alt={alt} src={isLoaded ? `${src}.gif` : LOADING_IMAGE_SRC} />
-      </picture>
-    </>
+    <picture>
+      {isLoaded && (
+        <>
+          <source type="image/webp" srcSet={`${src}.webp`} />
+          <source type="image/gif" srcSet={`${src}.gif`} />
+        </>
+      )}
+      <img alt={alt} src={isLoaded ? `${src}.gif` : LOADING_IMAGE_SRC} />
+    </picture>
   )
 }
 

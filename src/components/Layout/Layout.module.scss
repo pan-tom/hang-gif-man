@@ -1,7 +1,9 @@
+@use '../../styles/variables' as *;
+
 .container {
   box-sizing: border-box;
-  padding: 15px;
+  padding: $spacing-md;
   margin: 0 auto;
   width: 100%;
-  max-width: 1200px;
+  max-width: $max-width-container;
 }

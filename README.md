@@ -15,8 +15,10 @@ A modern React-based Hangman game with animated GIFs that show your progress. Bu
 ## 🛠️ Tech Stack
 
 - **React 19.2.4** - Latest React with modern features
-- **Vite 7** - Fast build tool and dev server
-- **Vitest 4** - Modern testing framework
+- **Vite 7.3.1** - Fast build tool and dev server
+- **Vitest 4.0.18** - Modern testing framework
+- **ESLint 9** - Code linting with flat config
+- **Prettier** - Code formatting
 - **SCSS Modules** - Scoped styling
 - **React Testing Library** - Component testing
 
@@ -63,9 +65,15 @@ npm test
 npm run test:ui
 ```
 
-### Code Formatting
+### Code Quality
 
 ```bash
+# Lint code with ESLint
+npm run lint
+
+# Auto-fix ESLint issues
+npm run lint:fix
+
 # Format code with Prettier
 npm run format
 ```
@@ -76,13 +84,25 @@ npm run format
 src/
 ├── components/
 │   ├── Board/          # Game board and logic
+│   │   ├── Board.jsx
+│   │   ├── Board.hooks.js    # Board component hooks
+│   │   ├── Keyboard.jsx
+│   │   ├── Letters.jsx
+│   │   ├── Result.jsx
+│   │   ├── Result.hooks.js   # Result component hooks
+│   │   ├── ResultImage.jsx
+│   │   └── RestartButton.jsx
 │   ├── Header/         # App header
 │   └── Layout/         # Main layout wrapper
+├── hooks/
+│   └── useImageLoader.js  # Reusable hook for image loading
+├── styles/
+│   └── _variables.scss    # Reusable Sass variables
 ├── data/
-│   └── words.json     # Word list
-├── constants.js       # Game constants and configuration
-├── index.jsx          # App entry point
-└── vitest.setup.js    # Test setup and mocks
+│   └── words.json         # Word list
+├── constants.js           # Game constants and configuration
+├── index.jsx              # App entry point
+└── vitest.setup.js        # Test setup configuration
 ```
 
 ## 🌐 Demo

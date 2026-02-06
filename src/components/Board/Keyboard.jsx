@@ -1,19 +1,7 @@
-import React, { useMemo } from 'react'
-import { KEYBOARD, ACTIVATION_KEYS } from '../../constants'
+import { ACTIVATION_KEYS, LETTER_KEYS } from '../../constants'
 import styles from './Keyboard.module.scss'
 
 const Keyboard = ({ disabled, handleKeyClick, selectedLetters }) => {
-  const getKeys = useMemo(() => {
-    let keys = []
-    for (
-      let code = KEYBOARD.FIRST_LETTER_CODE;
-      code <= KEYBOARD.LAST_LETTER_CODE;
-      code++
-    ) {
-      keys.push(String.fromCharCode(code))
-    }
-    return keys
-  }, [])
 
   const handleKeyDown = (e, letter) => {
     if (ACTIVATION_KEYS.includes(e.key)) {
@@ -26,7 +14,7 @@ const Keyboard = ({ disabled, handleKeyClick, selectedLetters }) => {
 
   return (
     <div className={styles.container} role="group" aria-label="Letter keyboard">
-      {getKeys.map(letter => {
+      {LETTER_KEYS.map(letter => {
         const isSelected = selectedLetters.includes(letter)
         return (
           <button
