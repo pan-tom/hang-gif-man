@@ -14,9 +14,9 @@ A modern React-based Hangman game with animated GIFs that show your progress. Bu
 
 ## 🛠️ Tech Stack
 
-- **React 19.2.4** - Latest React with modern features
-- **Vite 7.3.1** - Fast build tool and dev server
-- **Vitest 4.0.18** - Modern testing framework
+- **React 19** - Latest React with modern features
+- **Vite 7** - Fast build tool and dev server
+- **Vitest 4** - Modern testing framework
 - **ESLint 9** - Code linting with flat config
 - **Prettier** - Code formatting
 - **SCSS Modules** - Scoped styling
@@ -26,7 +26,7 @@ A modern React-based Hangman game with animated GIFs that show your progress. Bu
 
 ### Prerequisites
 
-- Node.js 20+
+- Node.js 22+
 - npm
 
 ### Installation
@@ -81,28 +81,69 @@ npm run format
 ## 📁 Project Structure
 
 ```
+public/                  # Static assets (served as-is)
+├── favicon.ico
+├── logo192.png
+├── logo512.png
+├── manifest.json
+├── media/               # Hangman GIFs (wrong guesses, success)
+│   ├── success.gif
+│   ├── success.webp
+│   ├── wrong0.gif
+│   ├── wrong0.webp
+│   ├── wrong1.gif
+│   ├── wrong1.webp
+│   ├── wrong2.gif
+│   ├── wrong2.webp
+│   ├── wrong3.gif
+│   ├── wrong3.webp
+│   ├── wrong4.gif
+│   ├── wrong4.webp
+│   ├── wrong5.gif
+│   ├── wrong5.webp
+│   ├── wrong6.gif
+│   └── wrong6.webp
+└── robots.txt
+
 src/
 ├── components/
-│   ├── Board/          # Game board and logic
+│   ├── Board/              # Game board and logic
+│   │   ├── Board.hooks.js  # Board component hooks
 │   │   ├── Board.jsx
-│   │   ├── Board.hooks.js    # Board component hooks
+│   │   ├── Board.test.jsx
 │   │   ├── Keyboard.jsx
+│   │   ├── Keyboard.module.scss
+│   │   ├── Keyboard.test.jsx
 │   │   ├── Letters.jsx
+│   │   ├── Letters.module.scss
+│   │   ├── Letters.test.jsx
+│   │   ├── RestartButton.jsx
+│   │   ├── RestartButton.module.scss
+│   │   ├── RestartButton.test.jsx
+│   │   ├── Result.hooks.js # Result component hooks
 │   │   ├── Result.jsx
-│   │   ├── Result.hooks.js   # Result component hooks
-│   │   ├── ResultImage.jsx
-│   │   └── RestartButton.jsx
-│   ├── Header/         # App header
-│   └── Layout/         # Main layout wrapper
-├── hooks/
-│   └── useImageLoader.js  # Reusable hook for image loading
-├── styles/
-│   └── _variables.scss    # Reusable Sass variables
+│   │   ├── Result.module.scss
+│   │   ├── Result.test.jsx
+│   │   └── ResultImage.jsx
+│   ├── Header/             # App header
+│   │   ├── Header.jsx
+│   │   └── Header.module.scss
+│   └── Layout/             # Main layout wrapper
+│       ├── Layout.jsx
+│       └── Layout.module.scss
 ├── data/
-│   └── words.json         # Word list
-├── constants.js           # Game constants and configuration
-├── index.jsx              # App entry point
-└── vitest.setup.js        # Test setup configuration
+│   └── words.json          # Word list
+├── hooks/
+│   ├── useImageLoader.js   # Reusable hook for image loading
+│   └── useImageLoader.test.js
+├── styles/
+│   └── _variables.scss     # Reusable Sass variables
+├── App.jsx
+├── App.test.jsx
+├── constants.js            # Game constants and configuration
+├── index.css
+├── index.jsx               # App entry point
+└── vitest.setup.js         # Test setup configuration
 ```
 
 ## 🌐 Demo
