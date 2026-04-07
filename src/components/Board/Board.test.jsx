@@ -28,15 +28,9 @@ describe('Board', () => {
   it('renders all game components', () => {
     render(<Board />)
 
-    expect(
-      screen.getByRole('button', { name: /restart game/i })
-    ).toBeInTheDocument()
-    expect(
-      screen.getByRole('group', { name: /letter keyboard/i })
-    ).toBeInTheDocument()
-    expect(
-      screen.getByRole('group', { name: /word to guess/i })
-    ).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /restart game/i })).toBeInTheDocument()
+    expect(screen.getByRole('group', { name: /letter keyboard/i })).toBeInTheDocument()
+    expect(screen.getByRole('group', { name: /word to guess/i })).toBeInTheDocument()
     expect(screen.getByRole('status')).toBeInTheDocument()
   })
 
@@ -105,9 +99,7 @@ describe('Board', () => {
     // Wait for game to end (wrong count reaches 6 and message appears)
     await waitFor(
       () => {
-        const wrongCount = within(result).getByLabelText(
-          /number of wrong guesses/i
-        )
+        const wrongCount = within(result).getByLabelText(/number of wrong guesses/i)
         expect(wrongCount).toHaveTextContent(/WRONG: 6\/6/)
         const gameOverMessage = screen.getByText(/game over/i, { hidden: true })
         expect(gameOverMessage).toBeInTheDocument()
@@ -161,7 +153,7 @@ describe('Board', () => {
 
     await waitFor(() => {
       const buttons = within(keyboard).getAllByRole('button')
-      buttons.forEach(button => {
+      buttons.forEach((button) => {
         expect(button).toBeDisabled()
       })
     })
@@ -183,14 +175,12 @@ describe('Board', () => {
     }
 
     await waitFor(() => {
-      expect(
-        screen.getByText(/congratulations! you won/i, { hidden: true })
-      ).toBeInTheDocument()
+      expect(screen.getByText(/congratulations! you won/i, { hidden: true })).toBeInTheDocument()
     })
 
     await waitFor(() => {
       const buttons = within(keyboard).getAllByRole('button')
-      buttons.forEach(button => {
+      buttons.forEach((button) => {
         expect(button).toBeDisabled()
       })
     })

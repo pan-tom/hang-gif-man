@@ -18,8 +18,8 @@ export const useHangmanGame = () => {
     setGameResult(null)
   }, [])
 
-  const handleKeyClick = useCallback(letter => {
-    setSelectedLetters(prevLetters => [...prevLetters, letter])
+  const handleKeyClick = useCallback((letter) => {
+    setSelectedLetters((prevLetters) => [...prevLetters, letter])
   }, [])
 
   const onFailed = useCallback(() => {

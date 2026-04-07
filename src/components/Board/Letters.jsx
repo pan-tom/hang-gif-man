@@ -6,7 +6,7 @@ const Letters = ({ gameResult, letters, onSucceed, selectedLetters }) => {
   const gameFailed = gameResult === GAME_RESULT.FAILED
 
   useEffect(() => {
-    const success = letters.every(letter => selectedLetters.includes(letter))
+    const success = letters.every((letter) => selectedLetters.includes(letter))
     if (success) {
       onSucceed()
     }
@@ -24,9 +24,7 @@ const Letters = ({ gameResult, letters, onSucceed, selectedLetters }) => {
           <div
             key={index}
             className={letterClasses.join(' ')}
-            aria-label={
-              showLetter || gameFailed ? `Letter ${letter}` : 'Hidden letter'
-            }
+            aria-label={showLetter || gameFailed ? `Letter ${letter}` : 'Hidden letter'}
             aria-hidden="false"
           >
             {(showLetter || gameFailed) && letter}

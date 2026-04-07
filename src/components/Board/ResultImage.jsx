@@ -9,9 +9,7 @@ import useImageLoader from '../../hooks/useImageLoader'
 
 const ResultImage = ({ gameResult, numWrong }) => {
   const src =
-    gameResult === GAME_RESULT.SUCCEED
-      ? MEDIA_PATHS.SUCCESS
-      : `${MEDIA_PATHS.WRONG}${numWrong}`
+    gameResult === GAME_RESULT.SUCCEED ? MEDIA_PATHS.SUCCESS : `${MEDIA_PATHS.WRONG}${numWrong}`
   const alt =
     gameResult === GAME_RESULT.SUCCEED
       ? MESSAGES.SUCCESS_ANIMATION_ALT
