@@ -11,13 +11,7 @@ describe('Keyboard', () => {
   })
 
   it('renders all letter buttons', () => {
-    render(
-      <Keyboard
-        handleKeyClick={mockHandleKeyClick}
-        selectedLetters={[]}
-        disabled={false}
-      />
-    )
+    render(<Keyboard handleKeyClick={mockHandleKeyClick} selectedLetters={[]} disabled={false} />)
 
     const keyboard = screen.getByRole('group', { name: /letter keyboard/i })
     const buttons = within(keyboard).getAllByRole('button')
@@ -27,11 +21,7 @@ describe('Keyboard', () => {
 
   it('disables selected buttons', () => {
     render(
-      <Keyboard
-        handleKeyClick={mockHandleKeyClick}
-        selectedLetters={['A', 'B']}
-        disabled={false}
-      />
+      <Keyboard handleKeyClick={mockHandleKeyClick} selectedLetters={['A', 'B']} disabled={false} />
     )
 
     const keyboard = screen.getByRole('group', { name: /letter keyboard/i })
@@ -51,31 +41,19 @@ describe('Keyboard', () => {
   })
 
   it('disables all buttons when keyboard is disabled', () => {
-    render(
-      <Keyboard
-        handleKeyClick={mockHandleKeyClick}
-        selectedLetters={[]}
-        disabled={true}
-      />
-    )
+    render(<Keyboard handleKeyClick={mockHandleKeyClick} selectedLetters={[]} disabled={true} />)
 
     const keyboard = screen.getByRole('group', { name: /letter keyboard/i })
     const buttons = within(keyboard).getAllByRole('button')
 
-    buttons.forEach(button => {
+    buttons.forEach((button) => {
       expect(button).toBeDisabled()
     })
   })
 
   it('calls handleKeyClick when button is clicked', async () => {
     const user = userEvent.setup()
-    render(
-      <Keyboard
-        handleKeyClick={mockHandleKeyClick}
-        selectedLetters={[]}
-        disabled={false}
-      />
-    )
+    render(<Keyboard handleKeyClick={mockHandleKeyClick} selectedLetters={[]} disabled={false} />)
 
     const keyboard = screen.getByRole('group', { name: /letter keyboard/i })
     const buttonA = within(keyboard).getByRole('button', {
@@ -89,13 +67,7 @@ describe('Keyboard', () => {
 
   it('calls handleKeyClick when Enter key is pressed', async () => {
     const user = userEvent.setup()
-    render(
-      <Keyboard
-        handleKeyClick={mockHandleKeyClick}
-        selectedLetters={[]}
-        disabled={false}
-      />
-    )
+    render(<Keyboard handleKeyClick={mockHandleKeyClick} selectedLetters={[]} disabled={false} />)
 
     const keyboard = screen.getByRole('group', { name: /letter keyboard/i })
     const buttonA = within(keyboard).getByRole('button', {
@@ -110,13 +82,7 @@ describe('Keyboard', () => {
 
   it('calls handleKeyClick when Space key is pressed', async () => {
     const user = userEvent.setup()
-    render(
-      <Keyboard
-        handleKeyClick={mockHandleKeyClick}
-        selectedLetters={[]}
-        disabled={false}
-      />
-    )
+    render(<Keyboard handleKeyClick={mockHandleKeyClick} selectedLetters={[]} disabled={false} />)
 
     const keyboard = screen.getByRole('group', { name: /letter keyboard/i })
     const buttonB = within(keyboard).getByRole('button', {
@@ -132,11 +98,7 @@ describe('Keyboard', () => {
   it('does not call handleKeyClick when button is disabled', async () => {
     const user = userEvent.setup()
     render(
-      <Keyboard
-        handleKeyClick={mockHandleKeyClick}
-        selectedLetters={['A']}
-        disabled={false}
-      />
+      <Keyboard handleKeyClick={mockHandleKeyClick} selectedLetters={['A']} disabled={false} />
     )
 
     const keyboard = screen.getByRole('group', { name: /letter keyboard/i })
@@ -151,13 +113,7 @@ describe('Keyboard', () => {
 
   it('does not call handleKeyClick when keyboard is disabled', async () => {
     const user = userEvent.setup()
-    render(
-      <Keyboard
-        handleKeyClick={mockHandleKeyClick}
-        selectedLetters={[]}
-        disabled={true}
-      />
-    )
+    render(<Keyboard handleKeyClick={mockHandleKeyClick} selectedLetters={[]} disabled={true} />)
 
     const keyboard = screen.getByRole('group', { name: /letter keyboard/i })
     const buttonA = within(keyboard).getByRole('button', {

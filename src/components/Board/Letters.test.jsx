@@ -35,8 +35,7 @@ describe('Letters', () => {
     )
 
     const lettersGroup = screen.getByRole('group', { name: /word to guess/i })
-    const hiddenLetters =
-      within(lettersGroup).getAllByLabelText('Hidden letter')
+    const hiddenLetters = within(lettersGroup).getAllByLabelText('Hidden letter')
 
     expect(hiddenLetters.length).toBe(5)
   })

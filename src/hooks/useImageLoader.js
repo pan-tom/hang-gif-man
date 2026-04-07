@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 
-const useImageLoader = src => {
+const useImageLoader = (src) => {
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {

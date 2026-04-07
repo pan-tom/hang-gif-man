@@ -9,7 +9,9 @@
   padding: $spacing-xs $spacing-sm;
   font-size: $font-size-sm;
   cursor: pointer;
-  transition: color $transition-default, background-color $transition-default,
+  transition:
+    color $transition-default,
+    background-color $transition-default,
     border-color $transition-default;
   &:hover {
     color: $color-white;
