@@ -3,9 +3,26 @@ import { render, screen, within, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Board from './Board'
 
+/**
+ * Single array instance so `words.json` default stays the same reference while
+ * tests swap the word (abc vs cat) via splice.
+ */
+const mockWords = vi.hoisted(() => {
+  const list = ['abc']
+  return { list }
+})
+
+vi.mock('../../data/words.json', () => ({
+  default: mockWords.list,
+}))
+
+/** Six wrong guesses to lose; none of these appear in the mocked word `abc`. */
+const WRONG_LETTERS_TO_LOSE = ['X', 'Z', 'Q', 'J', 'K', 'W']
+
 describe('Board', () => {
   beforeEach(() => {
     vi.clearAllMocks()
+    mockWords.list.splice(0, mockWords.list.length, 'abc')
   })
 
   it('renders all game components', () => {
@@ -78,32 +95,11 @@ describe('Board', () => {
     const keyboard = screen.getByRole('group', { name: /letter keyboard/i })
     const result = screen.getByRole('status')
 
-    // Select wrong letters until we reach 6 wrong guesses
-    // Use letters that are unlikely to be in common words
-    const candidateLetters = ['X', 'Z', 'Q', 'J', 'K', 'W', 'V', 'B', 'N', 'M']
-    let wrongCountReached = false
-
-    for (const letter of candidateLetters) {
-      if (wrongCountReached) break
-
+    for (const letter of WRONG_LETTERS_TO_LOSE) {
       const button = within(keyboard).getByRole('button', {
         name: new RegExp(`select letter ${letter}`, 'i'),
       })
-      if (!button.disabled) {
-        await user.click(button)
-        // Wait for wrong count to update and check if we've reached 6
-        await waitFor(() => {
-          const wrongCount = within(result).getByLabelText(
-            /number of wrong guesses/i
-          )
-          const match = wrongCount.textContent.match(/WRONG: (\d+)\/\d+/)
-          expect(match).not.toBeNull()
-          const currentWrong = parseInt(match[1], 10)
-          if (currentWrong >= 6) {
-            wrongCountReached = true
-          }
-        })
-      }
+      await user.click(button)
     }
 
     // Wait for game to end (wrong count reaches 6 and message appears)
@@ -156,18 +152,42 @@ describe('Board', () => {
 
     const keyboard = screen.getByRole('group', { name: /letter keyboard/i })
 
-    // Select wrong letters until game ends
-    const wrongLetters = ['X', 'Z', 'Q', 'J', 'K', 'W']
-    for (const letter of wrongLetters) {
+    for (const letter of WRONG_LETTERS_TO_LOSE) {
       const button = within(keyboard).getByRole('button', {
         name: new RegExp(`select letter ${letter}`, 'i'),
       })
-      if (!button.disabled) {
-        await user.click(button)
-      }
+      await user.click(button)
     }
 
-    // Wait for game state to update and buttons to become disabled
+    await waitFor(() => {
+      const buttons = within(keyboard).getAllByRole('button')
+      buttons.forEach(button => {
+        expect(button).toBeDisabled()
+      })
+    })
+  })
+
+  it('disables all keyboard buttons when player wins', async () => {
+    mockWords.list.splice(0, mockWords.list.length, 'cat')
+
+    const user = userEvent.setup()
+    render(<Board />)
+
+    const keyboard = screen.getByRole('group', { name: /letter keyboard/i })
+
+    for (const letter of ['C', 'A', 'T']) {
+      const button = within(keyboard).getByRole('button', {
+        name: new RegExp(`select letter ${letter}`, 'i'),
+      })
+      await user.click(button)
+    }
+
+    await waitFor(() => {
+      expect(
+        screen.getByText(/congratulations! you won/i, { hidden: true })
+      ).toBeInTheDocument()
+    })
+
     await waitFor(() => {
       const buttons = within(keyboard).getAllByRole('button')
       buttons.forEach(button => {
