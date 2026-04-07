@@ -6,6 +6,9 @@
   "engines": {
     "node": ">=20.0.0"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,scss,css,html,json,md,yml,yaml}": "prettier --write"
+  },
   "dependencies": {
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
@@ -22,7 +25,9 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
+    "husky": "^9.1.7",
     "jsdom": "^29.0.2",
+    "lint-staged": "^16.4.0",
     "prettier": "^3.8.1",
     "sass": "^1.99.0",
     "vite": "^8.0.5",
@@ -36,6 +41,7 @@
     "test:ui": "vitest --ui",
     "format": "prettier --write \"src/**/*.{ts,scss}\" \"src/**/*.{js,jsx}\"",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "prepare": "husky"
   }
 }
