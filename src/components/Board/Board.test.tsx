@@ -12,7 +12,7 @@ const mockWords = vi.hoisted(() => {
   return { list }
 })
 
-vi.mock('../../data/words.json', () => ({
+vi.mock('@/data/words.json', () => ({
   default: mockWords.list,
 }))
 
@@ -101,7 +101,7 @@ describe('Board', () => {
       () => {
         const wrongCount = within(result).getByLabelText(/number of wrong guesses/i)
         expect(wrongCount).toHaveTextContent(/WRONG: 6\/6/)
-        const gameOverMessage = screen.getByText(/game over/i, { hidden: true })
+        const gameOverMessage = screen.getByText(/game over/i)
         expect(gameOverMessage).toBeInTheDocument()
       },
       { timeout: 3000 }
@@ -175,7 +175,7 @@ describe('Board', () => {
     }
 
     await waitFor(() => {
-      expect(screen.getByText(/congratulations! you won/i, { hidden: true })).toBeInTheDocument()
+      expect(screen.getByText(/congratulations! you won/i)).toBeInTheDocument()
     })
 
     await waitFor(() => {

@@ -1,7 +1,8 @@
 export const GAME_RESULT = {
   SUCCEED: 'succeed',
   FAILED: 'failed',
-}
+} as const
+export type GameResult = (typeof GAME_RESULT)[keyof typeof GAME_RESULT]
 
 export const MAX_WRONG_GUESSES = 6
 
@@ -36,7 +37,7 @@ export const MESSAGES = {
   GAME_WON: 'Congratulations! You won the game!',
   GAME_OVER: 'Game over! You ran out of guesses.',
   SUCCESS_ANIMATION_ALT: 'Success animation - You won the game!',
-  HANGMAN_PROGRESS_ALT: (numWrong, maxWrong) =>
+  HANGMAN_PROGRESS_ALT: (numWrong: number, maxWrong: number) =>
     `Hangman progress showing ${numWrong} out of ${maxWrong} incorrect guesses`,
 }
 

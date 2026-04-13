@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { render, screen, within } from '@testing-library/react'
+import { GAME_RESULT } from '@/constants'
 import Letters from './Letters'
-import { GAME_RESULT } from '../../constants'
 
 describe('Letters', () => {
   const mockOnSucceed = vi.fn()

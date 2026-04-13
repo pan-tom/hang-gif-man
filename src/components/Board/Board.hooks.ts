@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react'
-import { GAME_RESULT, MESSAGES } from '../../constants'
-import wordsList from '../../data/words.json'
+import { type GameResult, GAME_RESULT, MESSAGES } from '@/constants'
+import wordsList from '@/data/words.json'
 
 const getRandomWordLetters = () => {
   const randomKey = Math.floor(Math.random() * wordsList.length)
@@ -9,8 +9,8 @@ const getRandomWordLetters = () => {
 
 export const useHangmanGame = () => {
   const [wordLetters, setWordLetters] = useState(() => getRandomWordLetters())
-  const [selectedLetters, setSelectedLetters] = useState([])
-  const [gameResult, setGameResult] = useState(null)
+  const [selectedLetters, setSelectedLetters] = useState<string[]>([])
+  const [gameResult, setGameResult] = useState<GameResult | null>(null)
 
   const restartGame = useCallback(() => {
     setWordLetters(getRandomWordLetters())
@@ -18,7 +18,7 @@ export const useHangmanGame = () => {
     setGameResult(null)
   }, [])
 
-  const handleKeyClick = useCallback((letter) => {
+  const handleKeyClick = useCallback((letter: string) => {
     setSelectedLetters((prevLetters) => [...prevLetters, letter])
   }, [])
 

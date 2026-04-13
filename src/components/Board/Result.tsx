@@ -1,9 +1,16 @@
-import { MAX_WRONG_GUESSES } from '../../constants'
+import { MAX_WRONG_GUESSES, type GameResult } from '@/constants'
 import ResultImage from './ResultImage'
 import { useVibration, useWrongGuesses } from './Result.hooks'
 import styles from './Result.module.scss'
 
-const Result = ({ gameResult, letters, onFailed, selectedLetters }) => {
+type ResultProps = {
+  gameResult: GameResult | null
+  letters: string[]
+  onFailed: () => void
+  selectedLetters: string[]
+}
+
+const Result = ({ gameResult, letters, onFailed, selectedLetters }: ResultProps) => {
   const { numWrong } = useWrongGuesses(letters, selectedLetters)
   useVibration(numWrong, onFailed)
 
