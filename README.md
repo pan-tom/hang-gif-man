@@ -1,12 +1,11 @@
 # Hang GIF Man
 
-A modern React-based Hangman game with animated GIFs that show your progress. Built with React 19 and Vite for a fast, smooth experience.
+A modern React-based Hangman game with animated WebP images that show your progress. Built with React 19, TypeScript, and Vite.
 
 ## 🎮 Features
 
 - Classic Hangman gameplay
-- Animated GIF feedback for wrong guesses
-- Success animation when you win
+- Animated WebP feedback for wrong guesses and success
 - Responsive design
 - Keyboard input support (mouse and keyboard)
 - Vibration feedback (on supported devices)
@@ -14,136 +13,127 @@ A modern React-based Hangman game with animated GIFs that show your progress. Bu
 
 ## 🛠️ Tech Stack
 
-- **React 19** - Latest React with modern features
-- **Vite 7** - Fast build tool and dev server
-- **Vitest 4** - Modern testing framework
-- **ESLint 9** - Code linting with flat config
-- **Prettier** - Code formatting
-- **SCSS Modules** - Scoped styling
-- **React Testing Library** - Component testing
+- **React 19** — UI
+- **TypeScript** — Typed source and tests
+- **Vite 8** — Dev server and production build
+- **Vitest 4** — Unit and component tests
+- **ESLint 9** — Linting (flat config, `eslint.config.ts`)
+- **Prettier** — Formatting
+- **SCSS Modules** — Scoped styling
+- **React Testing Library** — Component testing
 
 ## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js 22+
+- **Node.js 20+** (`package.json` `engines`; `.nvmrc` pins a version for local use)
 - npm
 
 ### Installation
 
 ```bash
-# Install dependencies
 npm install
 ```
 
 ### Development
 
 ```bash
-# Start development server
 npm run dev
 ```
 
-The app will be available at `http://localhost:5173` (or next available port)
+The app will be available at `http://localhost:5173` (or the next available port).
 
 ### Building for Production
 
 ```bash
-# Build for production
 npm run build
-
-# Preview production build
 npm run preview
 ```
 
 ### Testing
 
 ```bash
-# Run tests
 npm test
-
-# Run tests with UI
 npm run test:ui
 ```
 
 ### Code Quality
 
 ```bash
-# Lint code with ESLint
+npm run type-check
 npm run lint
-
-# Auto-fix ESLint issues
 npm run lint:fix
-
-# Format code with Prettier
 npm run format
 ```
+
+**Netlify (or similar):** Use build command `npm run type-check && npm run build` and publish directory `dist` if you want deploys to fail on type errors.
 
 ## 📁 Project Structure
 
 ```
-public/                  # Static assets (served as-is)
+public/                      # Static assets (served as-is)
 ├── favicon.ico
 ├── logo192.png
 ├── logo512.png
 ├── manifest.json
-├── media/               # Hangman GIFs (wrong guesses, success)
-│   ├── success.gif
+├── media/                   # Hangman animations — WebP only (no GIFs)
 │   ├── success.webp
-│   ├── wrong0.gif
 │   ├── wrong0.webp
-│   ├── wrong1.gif
 │   ├── wrong1.webp
-│   ├── wrong2.gif
 │   ├── wrong2.webp
-│   ├── wrong3.gif
 │   ├── wrong3.webp
-│   ├── wrong4.gif
 │   ├── wrong4.webp
-│   ├── wrong5.gif
 │   ├── wrong5.webp
-│   ├── wrong6.gif
 │   └── wrong6.webp
 └── robots.txt
 
+eslint.config.ts
+index.html
+package.json
+tsconfig.json
+tsconfig.app.json
+tsconfig.node.json
+vite.config.ts
+vitest.setup.ts
+
 src/
 ├── components/
-│   ├── Board/              # Game board and logic
-│   │   ├── Board.hooks.js  # Board component hooks
-│   │   ├── Board.jsx
-│   │   ├── Board.test.jsx
-│   │   ├── Keyboard.jsx
+│   ├── Board/
+│   │   ├── Board.tsx
+│   │   ├── Board.hooks.ts
+│   │   ├── Board.test.tsx
+│   │   ├── Keyboard.tsx
 │   │   ├── Keyboard.module.scss
-│   │   ├── Keyboard.test.jsx
-│   │   ├── Letters.jsx
+│   │   ├── Keyboard.test.tsx
+│   │   ├── Letters.tsx
 │   │   ├── Letters.module.scss
-│   │   ├── Letters.test.jsx
-│   │   ├── RestartButton.jsx
+│   │   ├── Letters.test.tsx
+│   │   ├── RestartButton.tsx
 │   │   ├── RestartButton.module.scss
-│   │   ├── RestartButton.test.jsx
-│   │   ├── Result.hooks.js # Result component hooks
-│   │   ├── Result.jsx
+│   │   ├── RestartButton.test.tsx
+│   │   ├── Result.tsx
+│   │   ├── Result.hooks.ts
 │   │   ├── Result.module.scss
-│   │   ├── Result.test.jsx
-│   │   └── ResultImage.jsx
-│   ├── Header/             # App header
-│   │   ├── Header.jsx
+│   │   ├── Result.test.tsx
+│   │   └── ResultImage.tsx
+│   ├── Header/
+│   │   ├── Header.tsx
 │   │   └── Header.module.scss
-│   └── Layout/             # Main layout wrapper
-│       ├── Layout.jsx
+│   └── Layout/
+│       ├── Layout.tsx
 │       └── Layout.module.scss
 ├── data/
-│   └── words.json          # Word list
+│   └── words.json
 ├── hooks/
-│   ├── useImageLoader.js   # Reusable hook for image loading
-│   └── useImageLoader.test.js
+│   ├── useImageLoader.ts
+│   └── useImageLoader.test.ts
 ├── styles/
-│   └── _variables.scss     # Reusable Sass variables
-├── App.jsx
-├── App.test.jsx
-├── constants.js            # Game constants and configuration
-├── index.css
-├── index.jsx               # App entry point
-└── vitest.setup.js         # Test setup configuration
+│   └── _variables.scss
+├── App.tsx
+├── App.test.tsx
+├── constants.ts
+├── index.scss
+└── index.tsx
 ```
 
 ## 🌐 Demo
