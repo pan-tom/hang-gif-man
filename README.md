@@ -60,10 +60,11 @@ npm run test:ui
 ### Code Quality
 
 ```bash
+npm run format:check   # CI uses this; respects .prettierignore
 npm run type-check
 npm run lint
 npm run lint:fix
-npm run format
+npm run format         # write — formats the whole repo (see Prettier)
 ```
 
 **Netlify (or similar):** Use build command `npm run type-check && npm run build` and publish directory `dist` if you want deploys to fail on type errors.
