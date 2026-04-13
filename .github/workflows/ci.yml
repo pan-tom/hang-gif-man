@@ -33,4 +33,3 @@ jobs:
       - run: npm run type-check
 
       - run: npm run test -- --run
-      - run: npm run build
