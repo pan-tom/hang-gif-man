@@ -23,7 +23,7 @@ const Letters = ({ gameResult, letters, onSucceed, selectedLetters }: LettersPro
     <div className={styles.container} role="group" aria-label="Word to guess">
       {letters.map((letter, index) => {
         const showLetter = selectedLetters.includes(letter)
-        let letterClasses = [styles.letter]
+        const letterClasses = [styles.letter]
         if (gameFailed && !showLetter) {
           letterClasses.push(styles['letter-failed'])
         }
