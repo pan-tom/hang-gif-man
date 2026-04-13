@@ -1,8 +1,15 @@
-import { ACTIVATION_KEYS, LETTER_KEYS } from '../../constants'
+import type { KeyboardEvent } from 'react'
+import { ACTIVATION_KEYS, LETTER_KEYS } from '@/constants'
 import styles from './Keyboard.module.scss'
 
-const Keyboard = ({ disabled, handleKeyClick, selectedLetters }) => {
-  const handleKeyDown = (e, letter) => {
+type KeyboardProps = {
+  disabled: boolean
+  handleKeyClick: (letter: string) => void
+  selectedLetters: string[]
+}
+
+const Keyboard = ({ disabled, handleKeyClick, selectedLetters }: KeyboardProps) => {
+  const handleKeyDown = (e: KeyboardEvent<HTMLButtonElement>, letter: string) => {
     if (ACTIVATION_KEYS.includes(e.key)) {
       e.preventDefault()
       if (!disabled && !selectedLetters.includes(letter)) {

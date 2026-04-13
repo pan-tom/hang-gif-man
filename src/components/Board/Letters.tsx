@@ -1,8 +1,15 @@
 import { useEffect } from 'react'
-import { GAME_RESULT } from '../../constants'
+import { type GameResult, GAME_RESULT } from '@/constants'
 import styles from './Letters.module.scss'
 
-const Letters = ({ gameResult, letters, onSucceed, selectedLetters }) => {
+type LettersProps = {
+  gameResult: GameResult | null
+  letters: string[]
+  onSucceed: () => void
+  selectedLetters: string[]
+}
+
+const Letters = ({ gameResult, letters, onSucceed, selectedLetters }: LettersProps) => {
   const gameFailed = gameResult === GAME_RESULT.FAILED
 
   useEffect(() => {
@@ -16,7 +23,7 @@ const Letters = ({ gameResult, letters, onSucceed, selectedLetters }) => {
     <div className={styles.container} role="group" aria-label="Word to guess">
       {letters.map((letter, index) => {
         const showLetter = selectedLetters.includes(letter)
-        let letterClasses = [styles.letter]
+        const letterClasses = [styles.letter]
         if (gameFailed && !showLetter) {
           letterClasses.push(styles['letter-failed'])
         }
@@ -25,7 +32,7 @@ const Letters = ({ gameResult, letters, onSucceed, selectedLetters }) => {
             key={index}
             className={letterClasses.join(' ')}
             aria-label={showLetter || gameFailed ? `Letter ${letter}` : 'Hidden letter'}
-            aria-hidden="false"
+            aria-hidden={false}
           >
             {(showLetter || gameFailed) && letter}
           </div>
